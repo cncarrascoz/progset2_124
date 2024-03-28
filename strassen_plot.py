@@ -33,6 +33,7 @@ def strassen_matrix_multiplication(X, Y, n_0):
 
     X = pad_matrix(X)
     Y = pad_matrix(Y)
+    
     n = X.shape[0]
 
     # Split matrices into quarters
@@ -60,8 +61,8 @@ def strassen_matrix_multiplication(X, Y, n_0):
     Z = remove_padding(Z, (original_shape_X[0], original_shape_Y[1]))
     return Z
 
-n_0_even_sparse = range(10, 1000, 2)
-n_0_odd_sparse = range(11, 1000, 2)
+n_0_even_sparse = range(10, 200, 2)
+n_0_odd_sparse = range(11, 200, 2)
 
 # Initialize lists for the sparser runtimes
 strassen_runtimes_even_sparse = []
@@ -88,6 +89,7 @@ for n_0 in n_0_even_sparse:
 for n_0 in n_0_odd_sparse:
     X = np.random.randint(0,2, (n_0, n_0))
     Y = np.random.randint(0,2, (n_0, n_0))
+    a = ((n_0/2) + 1)
 
     start_time = time.time()
     standard_matrix_multiplication(X, Y)
